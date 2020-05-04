@@ -22,29 +22,42 @@ public class Monsters extends Characters {
         dragon.skill = random(11, 16);
 
         // create a list of the monsters
-        ArrayList<String> monsters = new ArrayList<String>();
-        monsters.add(goblin.name);
-        monsters.add(orc.name);
-        monsters.add(manticore.name);
-        monsters.add(dragon.name);
+        ArrayList<Monsters> hillMonsters = new ArrayList<Monsters>();
+        monsters.add(goblin);
+        monsters.add(orc);
+        monsters.add(manticore);
+        monsters.add(dragon);
 
-        // randomly choose a monster
+        // randomly choose a monster and return it
         int randomNumber = random(0, 4);
-        String chosenMonster = monsters.get(randomNumber);
-
-        // create an object using the above random choice
-        Monsters enemy = new Monsters();
-        if (chosenMonster.equals("Goblin")) {
-            enemy = goblin;
-        } else if(chosenMonster.equals("Orc")) {
-            enemy = orc;
-        } else if(chosenMonster.equals("Manticore")) {
-            enemy = manticore;
-        } else if(chosenMonster.equals("Dragon")) {
-            enemy = dragon;
-        }
-        // return the chosen monster
-        return enemy;
+        return hillMonsters.get(randomNumber);
     }
-
+    
+    // define a method to return a random woods monster
+    public static Monsters getWoodMonster() {
+        Monsters darkElf = new Monsters();
+        Monsters woodGolem = new Monsters();
+        Monsters evilSprite = new Monsters();
+        Monsters hungryGhoul = new Monsters();
+        
+        // assign names and skill levels to the monsters
+        darkElf.name = "Dark Elf";
+        darkElf.skill = random(5, 10);
+        woodGolem.name = "Wood Golem";
+        woodGolem.skill = random(7, 12);
+        evilSprite.name = "Evil Sprite";
+        evilSprite.skill = random(9, 14);
+        hungryGhoul.name = "Hungry Ghoul";
+        hungryGhoul.skill = random(11, 16);
+        
+        // create a list to store the monsters in
+        ArrayList<Monsters> woodMonsters = new ArrayList<Monsters>();
+        woodMonsters.add(darkElf);
+        woodMonsters.add(woodGolem);
+        woodMonsters.add(evilSprite);
+        woodMonsters.add(hungryGhoul);
+        
+        // choose and return a random monster
+        int randomNumber = random(0, 4);
+        return woodMonsters.get(randomNumber);
     }
