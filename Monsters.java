@@ -3,7 +3,7 @@ package com.example.Characters;
 import java.util.ArrayList;
 
 public class Monsters extends Characters {
-    public static void main(String[] Arguments) {
+    public static Monsters getMonster() {
         // create the monster objects
         Monsters goblin = new Monsters();
         Monsters orc = new Monsters();
@@ -36,20 +36,15 @@ public class Monsters extends Characters {
         Monsters enemy = new Monsters();
         if (chosenMonster.equals("Goblin")) {
             enemy = goblin;
-        }
-        if (chosenMonster.equals("Orc")) {
+        } else if(chosenMonster.equals("Orc")) {
             enemy = orc;
-        }
-        if (chosenMonster.equals("Manticore")) {
+        } else if(chosenMonster.equals("Manticore")) {
             enemy = manticore;
-        }
-        if (chosenMonster.equals("Dragon")) {
+        } else if(chosenMonster.equals("Dragon")) {
             enemy = dragon;
         }
-
-        // show the player which monster they are fighting
-        System.out.format("You see a %s", enemy.name);
-        System.out.format("%nIt has Skill: %d", enemy.skill);
+        // return the chosen monster
+        return enemy;
     }
 
     }
