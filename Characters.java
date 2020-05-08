@@ -14,6 +14,7 @@ public class Characters {
     // define a method to return a random integer
     public static int random(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max);
+    }
         
     // define a method to have the player and monster fight
     static void fight (int pAttack, int mAttack, String mName) {
