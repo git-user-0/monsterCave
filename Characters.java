@@ -1,11 +1,15 @@
 package com.example.Characters;
 
+import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Characters {
     // declare variables to be used by all characters
     String name;
     int skill;
+    
+    // create a Scanner object to allow user input from the keyboard
+    public static Scanner kb = new Scanner(System.in);
 
     // define a method to return a random integer
     public static int random(int min, int max) {
