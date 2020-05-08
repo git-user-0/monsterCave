@@ -33,22 +33,9 @@ public class Rpg extends Monsters {
             kb.nextLine();
 
             // player and monster fight
-            player.skill += random(1, 7);
-            monster.skill += random(1, 7);
-            if(player.skill > monster.skill) {
-                System.out.format("%n%nYour attack strength is: %d", player.skill);
-                System.out.format("%n%s attack strength is %d", monster.name, monster.skill);
-                System.out.format("%n%nWell done - you have defeated the %s", monster.name);
-            } else if(player.skill < monster.skill) {
-                System.out.format("%n%nYour attack strength is: %d", player.skill);
-                System.out.format("%n%s attack strength is %d", monster.name, monster.skill);
-                System.out.format("%n%nSadly, you have been defeated - your quest ends here!");
-            } else {
-                player.skill += 1;
-                System.out.format("%n%nYour attack strength is: %d", player.skill);
-                System.out.format("%n%s attack strength is %d", monster.name, monster.skill);
-                System.out.format("%n%nWell done - you have defeated the %s", monster.name);
-            }// alternative choice
+            fight(player.skill, monster.skill, monster.name);
+            
+            // alternative choice
         } else if(choice.equals("b")) {
             System.out.format("%nAfter a short while, you smell the damp, green scent of the woods." +
                     "%nYou smile slightly as you enter the cool shadows cast by the thickly growing" +
@@ -63,23 +50,7 @@ public class Rpg extends Monsters {
             kb.nextLine();
 
             // player and monster fight
-            player.skill += random(1, 7);
-            monster.skill += random(1, 7);
-            if(player.skill > monster.skill) {
-                System.out.format("%n%nYour attack strength is: %d", player.skill);
-                System.out.format("%n%s attack strength is %d", monster.name, monster.skill);
-                System.out.format("%n%nWell done - you have defeated the %s", monster.name);
-            } else if(player.skill < monster.skill) {
-                System.out.format("%n%nYour attack strength is: %d", player.skill);
-                System.out.format("%n%s attack strength is %d", monster.name, monster.skill);
-                System.out.format("%n%nSadly, you have been defeated - your quest ends here!");
-            } else {
-                player.skill += 1;
-                System.out.format("%n%nYour attack strength is: %d", player.skill);
-                System.out.format("%n%s attack strength is %d", monster.name, monster.skill);
-                System.out.format("%n%nWell done - you have defeated the %s", monster.name);
-            }
+            fight(player.skill, monster.skill, monster.name);
         }
     }
-
 }
