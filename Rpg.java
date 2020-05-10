@@ -26,14 +26,51 @@ public class Rpg extends Monsters {
                 "%n%nThen, you suddenly hear a noise and look to your right. A monster emerges" +
                 "%nfrom its ambush place behind a large rock! It blocks the path - you must fight" +
                 "%nit!");
-        System.out.format("%n%nYour Skill: %d", player.skill);
-        Monsters monster = getHillMonster();
-        System.out.format("%n%n%s Skill: %d", monster.name, monster.skill);
-        System.out.format("%n%nPress enter to start the fight!");
+        System.out.format("%n%nPress enter to continue...");
         kb.nextLine();
+        displayBattle(player.name, player.skill, player.stamina);
+        Monsters monster = getHillMonster();
+        displayBattle(monster.name, monster.skill, monster.stamina);
+
+        // choice to use magic
+        if (player.mage = true) {
+            String spellChoice;
+            System.out.format("%nIf you would like to use magic, you may cast a spell now: ");
+            spellChoice = kb.nextLine();
+            switch (spellChoice) {
+                case "huo":
+                    int fDamage = fireBall(monster.name, monster.element);
+                    monster.stamina -= fDamage;
+                    displayBattle(monster.name, monster.skill, monster.stamina);
+                    break;
+                case "shui":
+                    int iDamage = iceBall(monster.name, monster.element);
+                    monster.stamina -= iDamage;
+                    break;
+                case "di":
+                    int eDamage = earthBall(monster.name, monster.element);
+                    monster.stamina -= eDamage;
+                    break;
+                case "mu":
+                    int wDamage = woodBall(monster.name, monster.element);
+                    monster.stamina -= wDamage;
+                    break;
+                case "jin":
+                    int mDamage = metalBall(monster.name, monster.element);
+                    monster.stamina -= mDamage;
+                    break;
+                default:
+                    System.out.format("%nYou close with the %s", monster.name);
+            }
+        }
 
         // player and monster fight
-        fight(player.skill, monster.skill, monster.name);
+        System.out.println("\nPress enter to begin your attack! ");
+        kb.nextLine();
+        fight(monster.skill, monster.stamina, monster.name);
+        if(player.stamina > 0) {
+            System.out.format("%n%nYou walk on...");
+        }
     }
 
     static void three () {
@@ -50,12 +87,16 @@ public class Rpg extends Monsters {
         kb.nextLine();
 
         // player and monster fight
-        fight(player.skill, monster.skill, monster.name);
+        fight(monster.skill, monster.stamina, monster.name);
+        if (player.stamina > 0) {
+            System.out.format("%n%nYou walk on...");
+        }
     }
 
     // main method
     public static void main (String[] Arguments) {
         // allow the user to input the name of their character
+        player.mage = true;
         System.out.println("\nWhat will your character be called?\n");
         player.name = kb.nextLine();
 
