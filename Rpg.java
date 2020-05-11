@@ -1,6 +1,11 @@
 package com.example.Characters;
 
 public class Rpg extends Monsters {
+    // create a constructor
+    Rpg(String monsterName, int monsterSkill, int monsterStamina, String monsterElement) {
+        super(monsterName, monsterSkill, monsterStamina, monsterElement);
+    }
+    
     // create the methods for each decision
     static void one () {
         System.out.format("You leave the town and head along a dusty path. Soon, it starts to climb" +
