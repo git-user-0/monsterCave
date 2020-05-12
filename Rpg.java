@@ -1,11 +1,10 @@
 package com.example.Characters;
 
 public class Rpg extends Monsters {
-    // create a constructor
     Rpg(String monsterName, int monsterSkill, int monsterStamina, String monsterElement) {
         super(monsterName, monsterSkill, monsterStamina, monsterElement);
     }
-    
+
     // create the methods for each decision
     static void one () {
         System.out.format("You leave the town and head along a dusty path. Soon, it starts to climb" +
@@ -39,34 +38,7 @@ public class Rpg extends Monsters {
 
         // choice to use magic
         if (player.mage = true) {
-            String spellChoice;
-            System.out.format("%nIf you would like to use magic, you may cast a spell now: ");
-            spellChoice = kb.nextLine();
-            switch (spellChoice) {
-                case "huo":
-                    int fDamage = fireBall(monster.name, monster.element);
-                    monster.stamina -= fDamage;
-                    displayBattle(monster.name, monster.skill, monster.stamina);
-                    break;
-                case "shui":
-                    int iDamage = iceBall(monster.name, monster.element);
-                    monster.stamina -= iDamage;
-                    break;
-                case "di":
-                    int eDamage = earthBall(monster.name, monster.element);
-                    monster.stamina -= eDamage;
-                    break;
-                case "mu":
-                    int wDamage = woodBall(monster.name, monster.element);
-                    monster.stamina -= wDamage;
-                    break;
-                case "jin":
-                    int mDamage = metalBall(monster.name, monster.element);
-                    monster.stamina -= mDamage;
-                    break;
-                default:
-                    System.out.format("%nYou close with the %s", monster.name);
-            }
+            monster.stamina = spellChoice(monster.name, monster.skill, monster.stamina, monster.element);
         }
 
         // player and monster fight
@@ -85,15 +57,22 @@ public class Rpg extends Monsters {
                 "%nYou are just beginning to think that you made the right decision, when you" +
                 "%nhear a loud noise to your left! Suddenly, a monster emerges from the bushes! It" +
                 "%nblocks the path = you must fight it!");
-        System.out.format("%n%nYour Skill: %d", player.skill);
-        Monsters monster = getWoodMonster();
-        System.out.format("%n%n%s Skill: %d", monster.name, monster.skill);
-        System.out.format("%n%nPress enter to start the fight!");
+        System.out.format("%n%nPress enter to continue...");
         kb.nextLine();
+        displayBattle(player.name, player.skill, player.stamina);
+        Monsters monster = getWoodMonster();
+        displayBattle(monster.name, monster.skill, monster.stamina);
+
+        // choice to use magic
+        if (player.mage = true) {
+            monster.stamina = spellChoice(monster.name, monster.skill, monster.stamina, monster.element);
+        }
 
         // player and monster fight
+        System.out.println("\nPress enter to begin your attack! ");
+        kb.nextLine();
         fight(monster.skill, monster.stamina, monster.name);
-        if (player.stamina > 0) {
+        if(player.stamina > 0) {
             System.out.format("%n%nYou walk on...");
         }
     }
