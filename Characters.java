@@ -101,20 +101,63 @@ public class Characters {
         }
     }
     
+    // define a method for the player to choose an attacking spell
+    static int spellChoice (String mName, int mSkill, int mStamina, String mElement) {
+        String spellChoice;
+        System.out.format("%nIf you would like to use magic, you may cast a spell now: ");
+        spellChoice = kb.nextLine();
+        switch (spellChoice) {
+            case "huo":
+                player.sanity -= 2;
+                int fDamage = fireBall(mName, mElement);
+                mStamina -= fDamage;
+                displayBattle(mName, mSkill, mStamina);
+                break;
+            case "shui":
+                player.sanity -= 2;
+                int iDamage = iceBall(mName, mElement);
+                mStamina -= iDamage;
+                break;
+            case "di":
+                player.sanity -= 2;
+                int eDamage = earthBall(mName, mElement);
+                mStamina -= eDamage;
+                break;
+            case "mu":
+                player.sanity -= 2;
+                int wDamage = woodBall(mName, mElement);
+                mStamina -= wDamage;
+                break;
+            case "jin":
+                player.sanity -= 2;
+                int mDamage = metalBall(mName, mElement);
+                mStamina -= mDamage;
+                break;
+            default:
+                System.out.format("%nYou close with the %s", mName);
+        }
+        return mStamina;
+    }
+
     // define a method for the spell: FIREBALL
     static int fireBall (String mName, String mElement) {
         int fireDamage = 0;
-        if (mElement.equals("wood") | mElement.equals("fire")) {
+        if (mElement.equals("fire") | mElement.equals("earth")) {
             System.out.format("%nA ball of blazing hot fire shoots from your hands!");
             System.out.format("%nThe %s absorbs the fire energy and grows stronger!",
                     mName);
             fireDamage += random(-3, -1);
-        } else if (mElement.equals("metal")) {
+        } else if (mElement.equals("water")) {
             System.out.format("%nA ball of blazing hot fire shoots from your hands!");
-            System.out.format("%nYou chose well!");
+            System.out.format("%nThe %s is not affected by your spell!", mName);
+        }
+        else if (mElement.equals("metal")) {
+            System.out.format("%nA ball of blazing hot fire shoots from your hands!");
+            System.out.format("%nYou chose well! The %s suffers extra damage from your spell!", mName);
             fireDamage += random(3, 5);
         } else {
             System.out.format("%nA ball of blazing hot fire shoots from your hands!");
+            System.out.format("%nThe %s suffers damage from your spell!", mName);
             fireDamage += random(1, 3);
         }
     return fireDamage;
@@ -123,33 +166,96 @@ public class Characters {
     // define a method for the spell: ICEBALL
     static int iceBall (String mName, String mElement) {
         int iceDamage = 0;
-        System.out.format("%nA ball of freezing cold water shoots from your hands!");
-        iceDamage += random(1, 3);
-        System.out.println(iceDamage);
+        if (mElement.equals("water") | mElement.equals("wood")) {
+            System.out.format("%nA ball of freezing cold water shoots from your hands!");
+            System.out.format("%nThe %s absorbs the water energy and grows stronger!",
+                    mName);
+            iceDamage += random(-3, -1);
+        } else if (mElement.equals("earth")) {
+            System.out.format("%nA ball of freezing cold water shoots from your hands!");
+            System.out.format("%nThe %s is not affected by your spell!", mName);
+        }
+        else if (mElement.equals("fire")) {
+            System.out.format("%nA ball of freezing cold water shoots from your hands!");
+            System.out.format("%nYou chose well! The %s suffers extra damage from your spell!", mName);
+            iceDamage += random(3, 5);
+        } else {
+            System.out.format("%nA ball of freezing cold water shoots from your hands!");
+            System.out.format("%nThe %s suffers damage from your spell!", mName);
+            iceDamage += random(1, 3);
+        }
         return iceDamage;
     }
 
     // define a method for the spell: EARTHBALL
     static int earthBall (String mName, String mElement) {
         int earthDamage = 0;
-        System.out.format("%nA ball of condensed earth energy shoots from your hands!");
-        earthDamage += random(1, 3);
+        if (mElement.equals("earth") | mElement.equals("metal")) {
+            System.out.format("%nA ball of condensed earth energy shoots from your hands!");
+            System.out.format("%nThe %s absorbs the earth energy and grows stronger!",
+                    mName);
+            earthDamage += random(-3, -1);
+        } else if (mElement.equals("wood")) {
+            System.out.format("%nA ball of condensed earth energy shoots from your hands!");
+            System.out.format("%nThe %s is not affected by your spell!", mName);
+        }
+        else if (mElement.equals("water")) {
+            System.out.format("%nA ball of condensed earth energy shoots from your hands!");
+            System.out.format("%nYou chose well! The %s suffers extra damage from your spell!", mName);
+            earthDamage += random(3, 5);
+        } else {
+            System.out.format("%nA ball of condensed earth shoots from your hands!");
+            System.out.format("%nThe %s suffers damage from your spell!", mName);
+            earthDamage += random(1, 3);
+        }
         return earthDamage;
     }
 
     // define a method for the spell: WOODBALL
     static int woodBall (String mName, String mElement) {
         int woodDamage = 0;
-        System.out.format("%nA ball of condensed wood energy shoots from your hands!");
-        woodDamage += random(1, 3);
+        if (mElement.equals("wood") | mElement.equals("fire")) {
+            System.out.format("%nA ball of condensed wood energy shoots from your hands!");
+            System.out.format("%nThe %s absorbs the wood energy and grows stronger!",
+                    mName);
+            woodDamage += random(-3, -1);
+        } else if (mElement.equals("metal")) {
+            System.out.format("%nA ball of condensed wood energy shoots from your hands!");
+            System.out.format("%nThe %s is not affected by your spell!", mName);
+        }
+        else if (mElement.equals("earth")) {
+            System.out.format("%nA ball of condensed wood energy shoots from your hands!");
+            System.out.format("%nYou chose well! The %s suffers extra damage from your spell!", mName);
+            woodDamage += random(3, 5);
+        } else {
+            System.out.format("%nA ball of condensed wood energy shoots from your hands!");
+            System.out.format("%nThe %s suffers damage from your spell!", mName);
+            woodDamage += random(1, 3);
+        }
         return woodDamage;
     }
 
     // define a method for the spell: METALBALL
     static int metalBall (String mName, String mElement) {
         int metalDamage = 0;
-        System.out.format("%nA ball of molten metal shoots from your hands!");
-        metalDamage += random(1, 3);
+        if (mElement.equals("metal") | mElement.equals("water")) {
+            System.out.format("%nA ball of crackling metal energy shoots from your hands!");
+            System.out.format("%nThe %s absorbs the metal energy and grows stronger!",
+                    mName);
+            metalDamage += random(-3, -1);
+        } else if (mElement.equals("fire")) {
+            System.out.format("%nA ball of crackling metal energy shoots from your hands!");
+            System.out.format("%nThe %s is not affected by your spell!", mName);
+        }
+        else if (mElement.equals("wood")) {
+            System.out.format("%nA ball of crackling metal energy shoots from your hands!");
+            System.out.format("%nYou chose well! The %s suffers extra damage from your spell!", mName);
+            metalDamage += random(3, 5);
+        } else {
+            System.out.format("%nA ball of crackling metal energy shoots from your hands!");
+            System.out.format("%nThe %s suffers damage from your spell!", mName);
+            metalDamage += random(1, 3);
+        }
         return metalDamage;
     }
 }
