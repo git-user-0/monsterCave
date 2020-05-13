@@ -45,9 +45,7 @@ public class Rpg extends Monsters {
         System.out.println("\nPress enter to begin your attack! ");
         kb.nextLine();
         fight(monster.skill, monster.stamina, monster.name);
-        if(player.stamina > 0) {
-            System.out.format("%n%nYou walk on...");
-        }
+        System.out.format("%n%nYou walk on...");
     }
 
     static void three () {
@@ -72,9 +70,7 @@ public class Rpg extends Monsters {
         System.out.println("\nPress enter to begin your attack! ");
         kb.nextLine();
         fight(monster.skill, monster.stamina, monster.name);
-        if(player.stamina > 0) {
-            System.out.format("%n%nYou walk on...");
-        }
+        System.out.format("%n%nYou walk on...");
     }
 
     // main method
