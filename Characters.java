@@ -91,7 +91,7 @@ public class Characters {
                 System.out.format("%n%s attack strength is %d", mName, mAttack);
                 if (player.stamina < 1) {
                     System.out.format("%n%nSadly, you have been defeated - your quest ends here!");
-                    return;
+                    System.exit(0);
                 }
                 System.out.format("%n%n%s Stamina: %d", player.name, player.stamina);
                 System.out.format("%n%s Stamina: %d", mName, mHealth);
@@ -99,6 +99,19 @@ public class Characters {
             System.out.format("%nPress enter to continue...");
             kb.nextLine();
         }
+    }
+    
+    // define a method to deal with loss of sanity when casting spells
+    public static void spellMadness() {
+        System.out.format("%n%nYou find your already weak grasp of reality crumbles completely" +
+                "%nas you bend the forces of nature to do your bidding. The total madness of" +
+                "%nit all and the sudden realisation that perhaps nothing is as it seems twists and" +
+                "%ndeforms your mind irreversibly. You collapse into a gibbering heap, caring not" +
+                "%nin the slightest what will befall you next." +
+                "%n%nYou can only hope that your foe kills you now - saving you from a life of" +
+                "raving insanity!" +
+                "%n%nYour adventure ends here!");
+        System.exit(0);
     }
     
     // define a method for the player to choose an attacking spell
@@ -109,27 +122,42 @@ public class Characters {
         switch (spellChoice) {
             case "huo":
                 player.sanity -= 2;
+                if (player.sanity < 1) {
+                    spellMadness();
+                }
                 int fDamage = fireBall(mName, mElement);
                 mStamina -= fDamage;
                 displayBattle(mName, mSkill, mStamina);
                 break;
             case "shui":
                 player.sanity -= 2;
+                if (player.sanity < 1) {
+                    spellMadness();
+                }
                 int iDamage = iceBall(mName, mElement);
                 mStamina -= iDamage;
                 break;
-            case "di":
+            case "tu":
                 player.sanity -= 2;
+                if (player.sanity < 1) {
+                    spellMadness();
+                }
                 int eDamage = earthBall(mName, mElement);
                 mStamina -= eDamage;
                 break;
             case "mu":
                 player.sanity -= 2;
+                if (player.sanity < 1) {
+                    spellMadness();
+                }
                 int wDamage = woodBall(mName, mElement);
                 mStamina -= wDamage;
                 break;
             case "jin":
                 player.sanity -= 2;
+                if (player.sanity < 1) {
+                    spellMadness();
+                }
                 int mDamage = metalBall(mName, mElement);
                 mStamina -= mDamage;
                 break;
